@@ -15,17 +15,17 @@ class BootStrap {
             UserRole.create(admin, roleAdmin, true)
         }
 
-        User owner = User.findByUsername("owner@gmail.com") ?: new User(username: 'admin@gmail.com', password: '12345').save(flush: true)
+        User owner = User.findByUsername("owner@gmail.com") ?: new User(username: 'owner@gmail.com', password: '12345').save(flush: true)
         if (!owner?.authorities?.contains(roleOwner)) {
             UserRole.create(owner, roleOwner, true)
         }
 
-        User agent = User.findByUsername("agent@gmail.com") ?: new User(username: 'admin@gmail.com', password: '12345').save(flush: true)
+        User agent = User.findByUsername("agent@gmail.com") ?: new User(username: 'agent@gmail.com', password: '12345').save(flush: true)
         if (!agent?.authorities?.contains(roleAgent)) {
             UserRole.create(agent, roleAgent, true)
         }
 
-        User customer = User.findByUsername("customer@gmail.com") ?: new User(username: 'admin@gmail.com', password: '12345').save(flush: true)
+        User customer = User.findByUsername("customer@gmail.com") ?: new User(username: 'customer@gmail.com', password: '12345').save(flush: true)
         if (!customer?.authorities?.contains(roleCustomer)) {
             UserRole.create(customer, roleCustomer, true)
         }

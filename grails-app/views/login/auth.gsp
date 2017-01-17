@@ -85,15 +85,32 @@
 </head>
 
 <body>
+<g:if test="${flash.message}">
+    <div class="${flash.css ?: 'alert alert-success'}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        %{--<i class="fa fa-info-circle fa-fw fa-lg"></i>--}%
+        <strong>${raw(flash.message)}</strong>
+    </div>
+</g:if>
+<g:if test="${flash.error}">
+    <div class="${flash.css ?: 'alert alert-danger'}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        %{--<i class="fa fa-info-circle fa-lg"></i>--}%
+        <strong style="color:red;">${raw(flash.error)}</strong>
+    </div>
+</g:if>
+
 <div id="login">
     <div class="inner">
+
         <div class="fheader"><g:message code='springSecurity.login.header'/></div>
 
         <g:if test='${flash.message}'>
             <div class="login_message">${flash.message}</div>
         </g:if>
 
-        <form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" class="cssform" autocomplete="off">
+        <form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" class="cssform"
+              autocomplete="off">
             <p>
                 <label for="username"><g:message code='springSecurity.login.username.label'/>:</label>
                 <input type="text" class="text_" name="${usernameParameter ?: 'username'}" id="username"/>
@@ -105,7 +122,8 @@
             </p>
 
             <p id="remember_me_holder">
-                <input type="checkbox" class="chk" name="${rememberMeParameter ?: 'remember-me'}" id="remember_me" <g:if test='${hasCookie}'>checked="checked"</g:if>/>
+                <input type="checkbox" class="chk" name="${rememberMeParameter ?: 'remember-me'}" id="remember_me"
+                       <g:if test='${hasCookie}'>checked="checked"</g:if>/>
                 <label for="remember_me"><g:message code='springSecurity.login.remember.me.label'/></label>
             </p>
 
@@ -115,9 +133,32 @@
         </form>
     </div>
 </div>
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+%{--<g:createLink controller="signUp" action="index">SignUp cccc</g:createLink>--}%
+<g:form controller="signUp" action="signup" method="POST" id="signUpForm" class="cssform"
+        autocomplete="off">
+    <p>
+        <label for="username">Username :</label>
+        <input type="text" class="text_" name="username" id="username1"/>
+    </p>
+
+    <p>
+        <label for="password">Password :</label>
+        <input type="password" class="text_" name="password" id="password1"/>
+    </p>
+
+    <p>
+        <input type="submit" id="submitS" value="SignUp"/>
+    </p>
+</g:form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="${createLink(controller: 'forAll', action: 'hello')}">Hello</a>
+
 <script>
-    (function() {
+    (function () {
         document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
     })();
 </script>
